@@ -2,20 +2,18 @@
 
 @theme {
   /* --- Cozy Library Color Palette --- */
-  
-  /* Primary: Deep Bookish Blue or Forest Green */
   --color-primary: #2d5a27; 
   --color-primary-foreground: #ffffff;
 
-  /* Secondary: Warm Amber/Wood tone */
   --color-secondary: #d97706;
   --color-secondary-foreground: #ffffff;
 
-  /* Accent: Soft Cream/Beige for that "page" feel */
   --color-accent: #fef3c7;
   --color-accent-foreground: #92400e;
 
-  /* Shadcn-like mapping for system consistency */
+  /* Adding the missing variable to fix the error */
+  --color-muted-foreground: #737373; 
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -31,57 +29,35 @@
 
 @layer base {
   :root {
-    /* Ivory/Cream background for a cozy reading feel */
     --background: #fdfcf7; 
-    --foreground: #1c1917; /* Soft Stone Black */
-    
+    --foreground: #1c1917; 
     --card: #ffffff;
     --card-foreground: #1c1917;
-    
     --border: #e7e5e4;
     --input: #e7e5e4;
-    --ring: #2d5a27; /* Matches Primary */
+    --ring: #2d5a27;
     --radius: 1rem;
-  }
-
-  .dark {
-    /* Dark Mode: Deep Midnight Library */
-    --background: #0c0a09;
-    --foreground: #f5f5f4;
-    --card: #1c1917;
-    --card-foreground: #f5f5f4;
-    --border: #292524;
-    --input: #292524;
-    --ring: #4ade80; 
   }
 }
 
 @layer components {
-  /* Primary Button: Sophisticated and Solid */
   .btn-primary {
     @apply bg-primary text-primary-foreground px-6 py-3 rounded-2xl font-bold 
            hover:brightness-110 transition-all cursor-pointer shadow-md 
            shadow-primary/20 active:scale-95 flex items-center justify-center gap-2;
   }
 
-  /* Secondary Button: Warm and Inviting */
   .btn-secondary {
     @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-2xl font-bold 
            hover:brightness-110 transition-all cursor-pointer shadow-md 
            shadow-secondary/20 active:scale-95 flex items-center justify-center gap-2;
   }
 
-  /* Input Field: Soft and Scannable */
+  /* Fixed this part: changed muted-foreground to a standard color or our new variable */
   .input-field {
     @apply w-full p-4 rounded-2xl border border-input bg-card/50 backdrop-blur-sm 
            focus:ring-2 focus:ring-primary focus:border-transparent outline-none 
-           transition-all placeholder:text-muted-foreground;
-  }
-  
-  /* Card Styling */
-  .book-card {
-    @apply bg-card border border-border rounded-2xl p-4 shadow-sm hover:shadow-xl 
-           hover:-translate-y-1 transition-all duration-300;
+           transition-all placeholder:text-stone-400; 
   }
 }
 
@@ -89,6 +65,5 @@
   * { @apply border-border; }
   body { 
     @apply bg-background text-foreground selection:bg-secondary/30 selection:text-secondary-foreground; 
-    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
